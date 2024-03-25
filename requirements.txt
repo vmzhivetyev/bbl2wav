@@ -1,4 +1,4 @@
 numpy==1.26.4
-orangebox==0.3.0
+orangebox @ git+https://github.com/vmzhivetyev/orangebox.git@314552e
 pandas==2.2.1
 pydub==0.25.1

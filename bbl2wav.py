@@ -7,6 +7,9 @@ import pandas as pd
 import numpy as np
 from pydub import AudioSegment
 
+# import logging
+# logging.basicConfig(level=logging.DEBUG)
+
 from bbl_reading import read_and_decode_log, get_bbl_log_count
 
 
