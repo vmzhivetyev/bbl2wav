@@ -61,6 +61,10 @@ def synthesize_sound(df_column, sampling_frequency, gain=1.0):
 def process_bbl(file_path):
     records, bb_freq, debug_mode, craft_name, battery = parse(file_path)
 
+    if debug_mode != 'GYRO_SCALED':
+        print(f"Error: Debug Mode should be set to GYRO_SCALED (but it's {debug_mode}) as we need the blackbox data to include unfiltered gyro.")
+        exit(1)
+
     for idx, df, len_sec in records:
         if len(df) < 100:
             print(f'Skipped.')
