@@ -15,7 +15,7 @@ def parse(file_path):
     log_count = get_bbl_log_count(file_path)
 
     records = []
-    _, header, _ = read_and_decode_log(file_path, 1, '')
+    df, header, name = read_and_decode_log(file_path, 1, '')
     bb_freq = header['blackbox_freq']
     debug_mode = header['debug_mode_name']
     craft_name = header['Craft name']
@@ -28,9 +28,10 @@ def parse(file_path):
     bbl_name = file_path.split('/')[-1].replace('.bbl', '')
 
     for i in range(0, log_count):
-        df, header, name = read_and_decode_log(file_path, i + 1, '')
+        if i > 0:  # we've already read it.
+            df, header, name = read_and_decode_log(file_path, i + 1, '')
         len_sec = len(df) / bb_freq
-        # print(f'{i+1}/{log_count}: {len(df)} frames @ {bb_freq} Hz, debug_mode = {debug_mode}, length = {len_sec:.1f}')
+        print(f'{i+1}/{log_count}: {len(df)} frames @ {bb_freq} Hz, debug_mode = {debug_mode}, length = {len_sec:.1f}')
         records.append((i + 1, df, len_sec))
 
     return records, bb_freq, debug_mode, craft_name, f'{batt_cells}S ({batt_voltage:.1f}V)'
