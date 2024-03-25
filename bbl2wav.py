@@ -74,6 +74,10 @@ def process_bbl(file_path):
             axis_channel = f'gyro_scaled_{axis}'
             output_file = file_path.replace('.bbl', '') + f'_{idx}_{axis}.wav'
 
+            if axis_channel not in df.columns:
+                print(f'{axis_channel} not found in the log.')
+                exit(1)
+
             audio, duration = synthesize_sound(
                 df[axis_channel].clip(
                     lower=-gyro_rate_limit,
