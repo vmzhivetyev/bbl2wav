@@ -62,8 +62,6 @@ def process_bbl(file_path):
     records, bb_freq, debug_mode, craft_name, battery = parse(file_path)
 
     for idx, df, len_sec in records:
-        print(f'arming #{idx} has {len(df)} samples, sampled at {bb_freq:.0f}Hz = {len_sec:.2f} seconds.')
-
         if len(df) < 100:
             print(f'Skipped.')
             continue
