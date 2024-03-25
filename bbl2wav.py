@@ -26,8 +26,6 @@ def parse(file_path):
     batt_voltage = header['bat_ref_voltage']
     header['Armed times'] = log_count
 
-    day_name = file_path.split('/')[5]
-    # bbl_number = re.findall(r'\d+', file_path.split('/')[-1])[0]
     bbl_name = file_path.split('/')[-1].replace('.bbl', '')
 
     for i in range(0, log_count):
